@@ -1,0 +1,6 @@
+amazon:
+    url: 'https://www.amazon.com/Super-NES-Classic/dp/B0721GGGS9/ref=sr_1_1?s=videogames&ie=UTF8&qid=1498789796&sr=1-1&keywords=snes+classic'
+    trigger: 'value="Pre-order: Add to Cart"'
+bestbuy:
+    url: 'http://www.bestbuy.com/site/nintendo-entertainment-system-snes-classic-edition/5919830.p?skuId=5919830'
+    trigger: 'data-button-state-id="PRE_ORDER"'
