@@ -4,3 +4,6 @@ amazon:
 bestbuy:
     url: 'http://www.bestbuy.com/site/nintendo-entertainment-system-snes-classic-edition/5919830.p?skuId=5919830'
     trigger: 'data-button-state-id="PRE_ORDER"'
+walmart:
+    url: 'https://www.walmart.com/ip/Super-Nintendo-Entertainment-System-Classic-Edition/55791858'
+    trigger: 'data-tl-id="button">Preorder</button>'

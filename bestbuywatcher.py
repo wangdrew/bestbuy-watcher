@@ -10,11 +10,10 @@ args = parser.parse_args()
 
 watchlist = {}
 
-SLEEP_TIME = 3
+SLEEP_TIME = 5
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36'}
-iftt_maker_url = 'https://maker.ifttt.com/trigger/'
-iftt_maker_url_suffix = '/with/key/'
+iftt_maker_url = 'https://maker.ifttt.com/trigger/preorder/with/key/'
 
 print 'Loading: \' ' + args.watchlist +'\''
 with open(args.watchlist, 'r') as stream:
@@ -42,20 +41,21 @@ while True:
         url = metadata["url"]
         trigger = metadata["trigger"]
 
+        print url
         try:
-            print "requesting " + url   # FIXME
             r = requests.get(url, headers=headers)
         except Exception as e:
             print(e)
             continue    # ignore all exceptions
 
         trigger_found = r.text.find(trigger) > -1
-        print "trigger_found " + str(trigger_found)   # FIXME
 
         if trigger_found:
-            ifttt_notify_url = iftt_maker_url + website + iftt_maker_url_suffix + args.makerkey
-            requests.post(args.channel)
+            print 'triggering ' + website 
+            body = {"value1": website}
+            resp = requests.post(iftt_maker_url + args.makerkey, data=body)
+
             # Remove the website from the watchlist so we don't alert again
-            active_watchlist.pop('website', None)
+            active_watchlist.pop(website, None)
 
     time.sleep(SLEEP_TIME)
